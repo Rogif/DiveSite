@@ -1,0 +1,15 @@
+1. Make the video play and be in an infinite loop.
+2. Every sea level needs to have a meter PNG with the name of the level and the animal of this section. This is the order:
+   - Sunlight: Turtle
+   - Midnight: Octopus
+   - Twilight: Angler
+   - Abyss: Lanternfish
+   - Trenches: Tube
+3. The torch:
+   a. Add a feather/blur effect around it.
+   b. Make it come to 80% opacity at the end instead of 100%.
+4. All the animal GIFs and PNGs need to be set on blend mode - overlay and at 35% opacity.
+   When triggered by the torch, they should change to blend mode - normal (no blend) and 100% opacity.
+   If pressed, it triggers the animal pop-up. If pressed outside or on the pop-up, the pop-up closes.
+
+Thank you bebe, love you <3
