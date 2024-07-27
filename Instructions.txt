@@ -1,4 +1,5 @@
 1. Make the video play and be in an infinite loop.
+DONE
 2. Every sea level needs to have a meter PNG with the name of the level and the animal of this section. This is the order:
    - Sunlight: Turtle
    - Midnight: Octopus
