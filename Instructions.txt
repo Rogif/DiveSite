@@ -6,6 +6,7 @@ DONE
    - Twilight: Angler
    - Abyss: Lanternfish
    - Trenches: Tube
+DONE
 3. The torch:
    a. Add a feather/blur effect around it.
    b. Make it come to 80% opacity at the end instead of 100%.
