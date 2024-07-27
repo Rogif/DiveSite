@@ -1,6 +1,4 @@
-let grad;
-let back;
-let wave;
+let seaback;
 let divevideo;
 let playing = false;
 let numDepths = 5;
@@ -12,15 +10,19 @@ let fishScale = 0.3;
 let labelScale = 0.3;
 let popupDisplaying = false;
 let currentPopup = 0;
+let soundOnImg, soundOffImg, seaSound;
+let soundPlaying = false;
+
 
 function setup() {
   createCanvas(windowWidth, 6493);
-  divevideo.hide();
+  //divevideo.hide();
   //divevideo.loop();
 }
 
 function preload() {
-  divevideo = createVideo(['divevideo.mp4']);
+  seaback = loadImage("seaback.png");
+  //divevideo = createVideo(['divevideo.mp4']);
   fishImages = [];
   for (let i = 0; i < fish.length; i++) {
     fishImages.push(loadImage(fish[i]));
@@ -33,13 +35,18 @@ function preload() {
   for (let i = 0; i < popups.length; i++) {
     popupImages.push(loadImage("popups/" + popups[i]));
   }
-  flashlight = loadImage("flashlightinverted.png");
+  flashlight = loadImage("flashlightinvertedclean.png");
   gradient = loadImage("blackgradient.png");
+
+  // Load sound and sound control images
+  seaSound = loadSound("seasound.mp3");
+  soundOnImg = loadImage("soundon.png");
+  soundOffImg = loadImage("soundoff.png");
 }
 
 function draw() {
   background(255);
-  image(divevideo, 0, 0, width, height); // Draw the divevideo at the top left corner of the canvas
+  image(seaback, 0, 0, 1920, 6493); // Draw the divevideo at the top left corner of the canvas
 
   for (let i = 0; i < numDepths; i++) {
     let depth = map(i, 0, numDepths, seaStartHeight, height); // Map the depth to a y-coordinate
@@ -74,6 +81,11 @@ function draw() {
     depth = map(currentPopup, 0, numDepths, seaStartHeight, height);
     image(popupImages[currentPopup], 0, depth);
   }
+
+  // Display sound control image at the bottom right
+  let img = soundPlaying ? soundOnImg : soundOffImg;
+  image(img, 30, 60);
+
 }
 
 function mousePressed() {
@@ -92,11 +104,24 @@ function mousePressed() {
 
     popupDisplaying = false;
   }
-}
 
-function mouseMoved() {
-  if (!playing) {
-    divevideo.loop();
-    playing = true;
+  //function mouseMoved() {
+  //if (!playing) {
+  // divevideo.loop();
+  // playing = true;
+  // }
+
+  // Check if the mouse is over the sound control image
+  let img = soundPlaying ? soundOnImg : soundOffImg;
+  let x = 30;
+  let y = 60;
+  if (mouseX > x && mouseX < x + img.width && mouseY > y && mouseY < y + img.height) {
+    if (soundPlaying) {
+      seaSound.stop();
+    } else {
+      seaSound.loop();
+    }
+    soundPlaying = !soundPlaying;
   }
 }
+
